@@ -7,7 +7,7 @@ pact
       path.resolve(__dirname, '../pacts'),
     ],
     pactBroker: 'http://localhost:9292',
-    tags: ['prod', 'test'],
+    tags: ['prod'],
     consumerVersion:
       `1.0.${Math.floor(new Date() / 1000)}`,
   })

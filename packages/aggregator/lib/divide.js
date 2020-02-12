@@ -2,7 +2,14 @@ const { makeExecutableSchema } = require('graphql-tools')
 const gql = require('graphql-tag')
 const fetch = require('node-fetch')
 
-module.exports = makeExecutableSchema({
+const resolution = (input, { host = 'divide', port = 3000 } = {}) =>
+  fetch(`http://${host}:${port}`, {
+    method: 'post',
+    body: JSON.stringify(input),
+    headers: { 'Content-Type': 'application/json' },
+  }).then(response => response.json())
+
+const schema = makeExecutableSchema({
   typeDefs: gql`
     input DivideArgs {
       left: Int!
@@ -19,12 +26,14 @@ module.exports = makeExecutableSchema({
   `,
   resolvers: {
     Query: {
-      divide: (source, { input }) =>
-        fetch('http://docker.for.mac.localhost:3200', {
-          method: 'post',
-          body: JSON.stringify(input),
-          headers: { 'Content-Type': 'application/json' },
-        }).then(response => response.json())
+      divide: (_, { input }) => resolution(input)
     },
   },
 })
+
+// exposed for consumer contract testing purposes
+schema.resolution = resolution
+
+module.exports = schema
+
+

@@ -1,12 +1,7 @@
-const express = require('express')
-const app = express()
+const service = require('./service')
 const port = process.env.PORT || 3000
 
-app
-  .use(express.json())
-  .post('/', ({ body: { left, right } }, res) => res.json({
-    result: left / right
-  }))
+service
   .listen(port, () =>
     console.log(`divide service listening on port ${port}!`)
   )

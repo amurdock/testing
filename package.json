@@ -3,8 +3,16 @@
   "version": "1.0.0",
   "license": "UNLICENSED",
   "private": true,
+  "scripts": {
+    "test:consumer": "wsrun --exclude-missing test:consumer",
+    "test:publish": "wsrun --exclude-missing test:publish",
+    "test:provider": "wsrun --concurrency 1 --exclude-missing test:provider"
+  },
   "workspaces": [
     "packages/services/*",
     "packages/aggregator"
-  ]
+  ],
+  "dependencies": {
+    "wsrun": "^5.2.0"
+  }
 }

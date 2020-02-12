@@ -5,9 +5,17 @@
   "main": "lib/index.js",
   "license": "UNLICENSED",
   "scripts": {
-    "start": "node lib/index.js"
+    "start": "node lib/index.js",
+    "test:provider": "jest --colors --testRegex='(/__tests__/.*|(\\.|/)(provider))\\.js$'"
   },
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@pact-foundation/pact": "^9.6.1",
+    "jest": "^25.1.0"
+  },
+  "config": {
+    "pact_do_not_track": true
   }
 }
