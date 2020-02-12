@@ -39,8 +39,8 @@ describe('add consumer', () => {
     )
 
     it('returns the expected result', async () => {
-      const result = await resolution({ left: 1, right: 2 }, { host: 'localhost' })
-      console.log(result)
+      await expect(resolution({ left: 1, right: 2 }, { host: 'localhost' }))
+        .resolves.toEqual(expected)
     })
 
     afterEach(() => provider.verify())
