@@ -1,0 +1,27 @@
+{
+  "name": "aggregator",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "node lib/index.js",
+    "test:consumer": "jest --colors --testRegex='(/__tests__/.*|(\\.|/)(consumer))\\.js$'",
+    "test:publish": "node bin/publish.js"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.10.0",
+    "express": "^4.17.1",
+    "graphql": "^14.6.0",
+    "graphql-tag": "^2.10.3",
+    "graphql-tools": "^4.0.6",
+    "node-fetch": "^2.6.0"
+  },
+  "config": {
+    "pact_do_not_track": true
+  },
+  "devDependencies": {
+    "@pact-foundation/pact": "^9.6.1",
+    "jest": "^25.1.0"
+  }
+}

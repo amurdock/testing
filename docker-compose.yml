@@ -1,0 +1,37 @@
+version: '3'
+services:
+  add:
+    build: packages/services/add
+    restart: always
+    ports:
+      - "3100:3000"
+  divide:
+    build: packages/services/divide
+    restart: always
+    ports:
+      - "3200:3000"
+  multiply:
+    build: packages/services/multiply
+    restart: always
+    ports:
+      - "3300:3000"
+  subtract:
+    build: packages/services/subtract
+    restart: always
+    ports:
+      - "3400:3000"
+  aggregator:
+    build: packages/aggregator
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - add
+      - divide
+      - multiply
+      - subtract
+    links:
+      - add
+      - divide
+      - multiply
+      - subtract
