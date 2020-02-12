@@ -6,7 +6,7 @@ describe('add consumer', () => {
   const provider = new Pact({
     consumer: "aggregator",
     provider: "add",
-    port: 3100,
+    port: 3000,
     log: path.resolve(process.cwd(), 'logs', 'pact.log'),
     dir: path.resolve(process.cwd(), 'pacts'),
     logLevel: 'INFO',
