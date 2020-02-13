@@ -24,7 +24,7 @@ services:
     build: packages/aggregator
     restart: always
     ports:
-      - "3000:3000"
+      - "4000:3000"
     depends_on:
       - add
       - divide
@@ -35,3 +35,10 @@ services:
       - divide
       - multiply
       - subtract
+  web:
+    build: packages/web
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - aggregator

@@ -10,7 +10,8 @@
   },
   "workspaces": [
     "packages/services/*",
-    "packages/aggregator"
+    "packages/aggregator",
+    "packages/web"
   ],
   "dependencies": {
     "wsrun": "^5.2.0"
