@@ -5,7 +5,7 @@ describe('multiply pact verification', () => {
   let server
 
   beforeAll(done => {
-    server = service.listen(3000, done)
+    server = service.listen(3300, done)
   })
 
   afterAll(done => {
@@ -16,7 +16,7 @@ describe('multiply pact verification', () => {
     return new Verifier({
       provider: 'multiply',
       logLevel: 'DEBUG',
-      providerBaseUrl: 'http://localhost:3000',
+      providerBaseUrl: 'http://localhost:3300',
       pactBrokerUrl: 'http://localhost:9292/',
       consumerVersionTag: ['prod'],
       providerVersionTag: ['prod'],

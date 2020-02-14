@@ -1,11 +1,11 @@
 const { Verifier } = require('@pact-foundation/pact')
 const service = require('../service')
 
-describe('add pact verification', () => {
+describe('aggregator add pact verification', () => {
   let server
 
   beforeAll(done => {
-    server = service.listen(3100, done)
+    server = service.listen(4000, done)
   })
 
   afterAll(done => {
@@ -14,12 +14,10 @@ describe('add pact verification', () => {
 
   it('validates the expectations of matching service', () => {
     return new Verifier({
-      provider: 'add',
+      provider: 'aggregator',
       logLevel: 'DEBUG',
-      providerBaseUrl: 'http://localhost:3100',
+      providerBaseUrl: 'http://localhost:4000/graphql',
       pactBrokerUrl: 'http://localhost:9292/',
-      consumerVersionTag: ['prod'],
-      providerVersionTag: ['prod'],
       publishVerificationResult: true,
       providerVersion: '1.0.0',
     }).verifyProvider()

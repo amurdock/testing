@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
-import logo from '../logo.svg'
-import '../styles/App.css'
 
-const calculatorQuery = operation => gql`
+export const calculatorQuery = operation => gql`
   query Calculator($left: Int!, $right: Int!) {
     ${operation}(input: { left: $left, right: $right }) {
       result
@@ -25,8 +23,18 @@ const Operation = ({ operation, left, right }) => {
 
   return (
     <div>Result: {data[operation].result}</div>
-  );
+  )
 }
+
+const Values = ({ name, value, onChange }) => (
+  <select name={name} value={value} onChange={onChange}>
+    {Array.from(Array(10).keys()).map(value => (
+      <option key={value + 1} value={value + 1}>
+        {value + 1}
+      </option>
+    ))}
+  </select>
+)
 
 class App extends Component {
   constructor(props) {
@@ -49,41 +57,25 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <br/>
-          <select name="operation" value={this.state.operation} onChange={this.onChangeOperation}>
-            <option value="add">
-              Add
-            </option>
-            <option value="divide">
-              Divide
-            </option>
-            <option value="multiply">
-              Multiply
-            </option>
-            <option value="subtract">
-              Subtract
-            </option>
-          </select>
-          <select name="left" value={this.state.left} onChange={this.onChangeValue('left')}>
-            {Array.from(Array(10).keys()).map(value => (
-              <option key={value + 1} value={value + 1}>
-                {value + 1}
-              </option>
-            ))}
-          </select>
-          <select name="left" value={this.state.right} onChange={this.onChangeValue('right')}>
-            {Array.from(Array(10).keys()).map(value => (
-              <option key={value + 1} value={value + 1}>
-                {value + 1}
-              </option>
-            ))}
-          </select>
-          <br/>
-          <Operation {...this.state}/>
-        </div>
+      <div>
+        <select name="operation" value={this.state.operation} onChange={this.onChangeOperation}>
+          <option value="add">
+            Add
+          </option>
+          <option value="divide">
+            Divide
+          </option>
+          <option value="multiply">
+            Multiply
+          </option>
+          <option value="subtract">
+            Subtract
+          </option>
+        </select>
+        <Values name="left" value={this.state.left} onChange={this.onChangeValue('left')}/>
+        <Values name="right" value={this.state.right} onChange={this.onChangeValue('right')}/>
+        <br/>
+        <Operation {...this.state}/>
       </div>
     )
   }

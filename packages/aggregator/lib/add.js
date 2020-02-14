@@ -2,8 +2,8 @@ const { makeExecutableSchema } = require('graphql-tools')
 const gql = require('graphql-tag')
 const fetch = require('node-fetch')
 
-const resolution = (input, { host = 'add', port = 3000 } = {}) =>
-  fetch(`http://${host}:${port}`, {
+const resolution = (input, host = process.env.ADD_HOST || 'localhost:3000') =>
+  fetch(`http://${host}/add`, {
     method: 'post',
     body: JSON.stringify(input),
     headers: {'Content-Type': 'application/json'},

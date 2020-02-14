@@ -1,35 +1,35 @@
 const path = require('path')
 const { Pact } = require('@pact-foundation/pact')
-const { resolution } = require('../subtract')
+const { resolution } = require('../add')
 
-describe('subtract consumer', () => {
+describe('add consumer', () => {
   const provider = new Pact({
     consumer: 'aggregator',
-    provider: 'subtract',
+    provider: 'add',
     port: 3000,
-    log: path.resolve(process.cwd(), 'logs', 'pact.subtract.log'),
+    log: path.resolve(process.cwd(), 'logs', 'pact.add.log'),
     dir: path.resolve(process.cwd(), 'pacts'),
     logLevel: 'INFO',
   })
 
   const expected = {
-    result: -1
+    result: 2
   }
 
-  describe('when subtracting two integers', () => {
+  describe('when adding two integers', () => {
     beforeEach(() =>
       provider
         .setup()
         .then(() =>
           provider.addInteraction({
-            uponReceiving: 'subtracting 1 from 2',
+            uponReceiving: 'an addition for 1 and 2',
             withRequest: {
               method: 'POST',
-              path: '/',
+              path: '/add',
               headers: { 'Content-Type': 'application/json' },
               body: {
                 left: 1,
-                right: 2
+                right: 1
               }
             },
             willRespondWith: {
@@ -42,7 +42,7 @@ describe('subtract consumer', () => {
     )
 
     it('returns the expected result', async () => {
-      await expect(resolution({ left: 1, right: 2 }, { host: 'localhost' }))
+      await expect(resolution({ left: 1, right: 1 }))
         .resolves.toEqual(expected)
     })
 

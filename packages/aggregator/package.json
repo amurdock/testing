@@ -6,8 +6,9 @@
   "private": true,
   "scripts": {
     "start": "node lib/index.js",
-    "test:consumer": "jest --runInBand --colors --testRegex='(/__tests__/.*|(\\.|/)(consumer))\\.js$'",
-    "test:publish": "node bin/publish.js"
+    "test:consumer": "jest --runInBand --colors --testRegex='/__tests__/.*.consumer.js$'",
+    "test:publish": "node bin/publish.js",
+    "test:provider": "jest --colors --testRegex='/__tests__/.*.provider.js$'"
   },
   "dependencies": {
     "apollo-server-express": "^2.10.0",

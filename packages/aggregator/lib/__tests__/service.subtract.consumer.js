@@ -1,35 +1,35 @@
 const path = require('path')
 const { Pact } = require('@pact-foundation/pact')
-const { resolution } = require('../divide')
+const { resolution } = require('../subtract')
 
-describe('divide consumer', () => {
+describe('subtract consumer', () => {
   const provider = new Pact({
     consumer: 'aggregator',
-    provider: 'divide',
+    provider: 'subtract',
     port: 3000,
-    log: path.resolve(process.cwd(), 'logs', 'pact.divide.log'),
+    log: path.resolve(process.cwd(), 'logs', 'pact.subtract.log'),
     dir: path.resolve(process.cwd(), 'pacts'),
     logLevel: 'INFO',
   })
 
   const expected = {
-    result: 0.5
+    result: 0
   }
 
-  describe('when dividing two integers', () => {
+  describe('when subtracting two integers', () => {
     beforeEach(() =>
       provider
         .setup()
         .then(() =>
           provider.addInteraction({
-            uponReceiving: 'a division of 1 by 2',
+            uponReceiving: 'subtracting 1 from 2',
             withRequest: {
               method: 'POST',
-              path: '/',
+              path: '/subtract',
               headers: { 'Content-Type': 'application/json' },
               body: {
                 left: 1,
-                right: 2
+                right: 1
               }
             },
             willRespondWith: {
@@ -42,7 +42,7 @@ describe('divide consumer', () => {
     )
 
     it('returns the expected result', async () => {
-      await expect(resolution({ left: 1, right: 2 }, { host: 'localhost' }))
+      await expect(resolution({ left: 1, right: 1 }))
         .resolves.toEqual(expected)
     })
 

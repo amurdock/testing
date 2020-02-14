@@ -6,7 +6,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "start": "node lib/index.js",
-    "test:provider": "jest --colors --testRegex='(/__tests__/.*|(\\.|/)(provider))\\.js$'"
+    "test:provider": "jest --colors --testRegex='/__tests__/.*.provider.js$'"
   },
   "dependencies": {
     "express": "^4.17.1"

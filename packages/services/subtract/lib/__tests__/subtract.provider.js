@@ -5,7 +5,7 @@ describe('subtract pact verification', () => {
   let server
 
   beforeAll(done => {
-    server = service.listen(3000, done)
+    server = service.listen(3400, done)
   })
 
   afterAll(done => {
@@ -16,7 +16,7 @@ describe('subtract pact verification', () => {
     return new Verifier({
       provider: 'subtract',
       logLevel: 'DEBUG',
-      providerBaseUrl: 'http://localhost:3000',
+      providerBaseUrl: 'http://localhost:3400',
       pactBrokerUrl: 'http://localhost:9292/',
       consumerVersionTag: ['prod'],
       providerVersionTag: ['prod'],
