@@ -20,10 +20,12 @@ This stage will likely take a few minutes to complete.
 `docker-compose build`
 
 ## run
-Run the following command and once complete navigator to [http://localhost:3000](http://localhost:3000). 
+Run the following command.
 `docker-compose up`
-Should see something similar to
+Once complete navigator to [http://localhost:3000](http://localhost:3000) and your should see something similar to
+
 ![](bin/app.png)
+
 Once you've got an idea of what the app is trying to achieve stop `docker-compose` via _ctrl+c_. This stops ports conflicting when you come to test using pact.
 
 ## testing
