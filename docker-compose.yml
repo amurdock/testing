@@ -25,6 +25,11 @@ services:
     restart: always
     ports:
       - "4000:3000"
+    environment:
+      - ADD_HOST=add:3000
+      - DIVIDE_HOST=divide:3000
+      - MULTIPLY_HOST=multiply:3000
+      - SUBTRACT_HOST=subtract:3000
     depends_on:
       - add
       - divide
