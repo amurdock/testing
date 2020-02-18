@@ -4,9 +4,11 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
+    "clean": "git clean -dfqX -- ./node_modules **/{dist,node_modules}/ ./packages/*/tsconfig*tsbuildinfo",
     "test:consumer": "wsrun --exclude-missing test:consumer",
     "test:publish": "wsrun --exclude-missing test:publish",
-    "test:provider": "wsrun --concurrency 1 --exclude-missing test:provider"
+    "test:provider": "wsrun --concurrency 1 --exclude-missing test:provider",
+    "test:deploy": "for service in {'web','aggregator','add','divide','multiply','subtract'}; do pact-broker can-i-deploy --pacticipant $service --latest --broker-base-url=http://localhost:9292; done"
   },
   "workspaces": [
     "packages/services/*",

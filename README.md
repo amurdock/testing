@@ -8,12 +8,15 @@ The services within implement a rudimentary calculator with;
   * services (add, divide, multiply and subtract)
   
 ## dependencies
+* nvm
 * node
 * yarn
 * docker
+* docker-compose
   
 ## setup
-`yarn`
+`nvm use`
+`yarn clean && yarn`
   
 ## build
 This stage will likely take a few minutes to complete.
